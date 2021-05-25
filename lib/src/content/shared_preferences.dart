@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'dart:async' show Future;
+import 'dart:io' show Platform;
 
 import 'package:flutter/services.dart' show MethodChannel;
 
@@ -75,20 +76,20 @@ class _SharedPreferences extends SharedPreferences {
   _SharedPreferences(this.name, this.mode);
 
   Future<SharedPreferences> load() async {
-    final Map<String, dynamic> request = <String, dynamic>{
-      'name': name,
-      'mode': mode
-    };
+    assert(Platform.isAndroid);
+    final request = <String, dynamic>{'name': name, 'mode': mode};
     _cache = (await _channel.invokeMethod('getAll', request)
             as Map<dynamic, dynamic>)
         .cast<String, dynamic>();
     return this;
   }
 
+  @override
   T get<T>(String key, [T defaultValue]) {
     return _cache[key] ?? defaultValue;
   }
 
+  @override
   Map<String, dynamic> getAll() {
     return Map.unmodifiable(_cache);
   }

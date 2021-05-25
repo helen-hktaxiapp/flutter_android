@@ -1,11 +1,13 @@
 /* This is free and unencumbered software released into the public domain. */
 
-import 'parcelable.dart';
+import 'parcel.dart' show Parcel;
+import 'parcelable.dart' show Parcelable;
 
 /// A mapping from [String] keys to various [Parcelable] values.
 ///
 /// See: https://developer.android.com/reference/android/os/Bundle
-class Bundle implements Parcelable {
+/// See: https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/os/Bundle.java
+class Bundle with Parcelable {
   /// The canonical empty bundle.
   ///
   /// See: https://developer.android.com/reference/android/os/Bundle#EMPTY
@@ -68,4 +70,12 @@ class Bundle implements Parcelable {
   ///
   /// See: https://developer.android.com/reference/android/os/BaseBundle#putString(java.lang.String,%20java.lang.String)
   void putString(final String key, final String value) => mappings[key] = value;
+
+  @override
+  String get parcelableCreator => "android.os.Bundle";
+
+  @override
+  void writeToParcel(final Parcel parcel, [final int flags = 0]) {
+    throw UnimplementedError(); // TODO: https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/os/BaseBundle.java#L1556
+  }
 }

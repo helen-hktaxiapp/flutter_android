@@ -1,8 +1,6 @@
 /* This is free and unencumbered software released into the public domain. */
 
-import 'package:meta/meta.dart' show required;
-
-import 'package:flutter/services.dart' show EventChannel;
+import 'package:flutter/foundation.dart' show required;
 
 import 'sensor_event.dart' show SensorEvent;
 import 'sensor_manager.dart' show SensorManager;
@@ -330,7 +328,7 @@ class Sensor {
   /// See: https://developer.android.com/reference/android/hardware/SensorManager#registerListener(android.hardware.SensorEventListener,%20android.hardware.Sensor,%20int)
   Future<Stream<SensorEvent>> subscribe(
       {int samplingPeriodUs, int maxReportLatencyUs}) async {
-    final EventChannel events = await SensorManager.registerListener(this,
+    final events = await SensorManager.registerListener(this,
         samplingPeriodUs: samplingPeriodUs,
         maxReportLatencyUs: maxReportLatencyUs);
     return events.receiveBroadcastStream().map(

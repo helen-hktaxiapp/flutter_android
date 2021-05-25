@@ -1,12 +1,9 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'dart:async' show Future;
-
-import 'package:platform/platform.dart' show Platform, LocalPlatform;
+import 'dart:io' show Platform;
 
 import 'cursor.dart' show Cursor;
-
-const Platform _platform = LocalPlatform();
 
 /// Static utility methods for dealing with databases and [Cursor]s.
 ///
@@ -16,7 +13,7 @@ abstract class DatabaseUtils {
   ///
   /// See: https://developer.android.com/reference/android/database/DatabaseUtils#dumpCurrentRow(android.database.Cursor)
   static Future<void> dumpCurrentRow(final Cursor cursor) async {
-    assert(_platform.isAndroid);
+    assert(Platform.isAndroid);
 
     print(await dumpCurrentRowToString(cursor));
   }
@@ -25,10 +22,10 @@ abstract class DatabaseUtils {
   ///
   /// See: https://developer.android.com/reference/android/database/DatabaseUtils#dumpCurrentRowToString(android.database.Cursor)
   static Future<String> dumpCurrentRowToString(final Cursor cursor) async {
-    assert(_platform.isAndroid);
+    assert(Platform.isAndroid);
 
     final buffer = StringBuffer();
-    dumpCurrentRowToStringBuffer(cursor, buffer);
+    await dumpCurrentRowToStringBuffer(cursor, buffer);
     return buffer.toString();
   }
 
@@ -37,10 +34,10 @@ abstract class DatabaseUtils {
   /// See: https://developer.android.com/reference/android/database/DatabaseUtils#dumpCurrentRowToString(android.database.Cursor)
   static Future<void> dumpCurrentRowToStringBuffer(
       final Cursor cursor, final StringBuffer buffer) async {
-    assert(_platform.isAndroid);
+    assert(Platform.isAndroid);
 
     buffer.write("[");
-    for (int columnIndex = 0;
+    for (var columnIndex = 0;
         columnIndex < cursor.getColumnCount();
         columnIndex++) {
       if (columnIndex > 0) buffer.write(", ");
@@ -74,7 +71,7 @@ abstract class DatabaseUtils {
   ///
   /// See: https://developer.android.com/reference/android/database/DatabaseUtils#dumpCursor(android.database.Cursor)
   static Future<void> dumpCursor(final Cursor cursor) async {
-    assert(_platform.isAndroid);
+    assert(Platform.isAndroid);
 
     final position = cursor.getPosition();
     while (cursor.moveToNext()) {
@@ -89,7 +86,7 @@ abstract class DatabaseUtils {
   ///
   /// See: https://developer.android.com/reference/android/database/DatabaseUtils#dumpCursorToString(android.database.Cursor)
   static Future<String> dumpCursorToString(final Cursor cursor) async {
-    assert(_platform.isAndroid);
+    assert(Platform.isAndroid);
 
     final buffer = StringBuffer();
 

@@ -7,7 +7,7 @@ import 'package:flutter_android/android_os.dart' as android_os;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef Future<dynamic> PropertyCallback();
+typedef PropertyCallback = Future<dynamic> Function();
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -22,7 +22,8 @@ class ClassDescription {
   final Map<String, PropertyCallback> properties;
   final Map<String, MethodDescription> methods;
 
-  const ClassDescription(this.name, {
+  const ClassDescription(
+    this.name, {
     this.properties = const {},
     this.methods = const {},
   });

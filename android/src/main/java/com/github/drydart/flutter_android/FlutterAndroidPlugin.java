@@ -2,53 +2,73 @@
 
 package com.github.drydart.flutter_android;
 
+import androidx.annotation.NonNull;
+
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.BinaryMessenger;
+import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
+import io.flutter.plugin.common.MethodChannel.Result;
 
 /** FlutterAndroidPlugin */
-public class FlutterAndroidPlugin {
+public class FlutterAndroidPlugin implements FlutterPlugin {
 
   /** Plugin registration. */
-  public static void registerWith(final Registrar registrar) {
-    assert(registrar != null);
+  @Override
+  public void onAttachedToEngine(final @NonNull FlutterPlugin.FlutterPluginBinding binding) {
+    assert(binding != null);
 
-    (new MethodChannel(registrar.messenger(), ActivityManagerHandler.CHANNEL))
-      .setMethodCallHandler(new ActivityManagerHandler(registrar));
+    final BinaryMessenger messenger = binding.getBinaryMessenger();
+    assert(messenger != null);
 
-    (new MethodChannel(registrar.messenger(), AndroidHandler.CHANNEL))
-      .setMethodCallHandler(new AndroidHandler(registrar));
+    (new MethodChannel(messenger, ActivityManagerHandler.CHANNEL))
+      .setMethodCallHandler(new ActivityManagerHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), BluetoothAdapterHandler.CHANNEL))
-      .setMethodCallHandler(new BluetoothAdapterHandler(registrar));
+    (new MethodChannel(messenger, AndroidHandler.CHANNEL))
+      .setMethodCallHandler(new AndroidHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), BluetoothDeviceHandler.CHANNEL))
-      .setMethodCallHandler(new BluetoothDeviceHandler(registrar));
+    (new MethodChannel(messenger, BluetoothAdapterHandler.CHANNEL))
+      .setMethodCallHandler(new BluetoothAdapterHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), BluetoothHeadsetHandler.CHANNEL))
-      .setMethodCallHandler(new BluetoothHeadsetHandler(registrar));
+    (new MethodChannel(messenger, BluetoothDeviceHandler.CHANNEL))
+      .setMethodCallHandler(new BluetoothDeviceHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), BluetoothLeScannerHandler.CHANNEL))
-      .setMethodCallHandler(new BluetoothLeScannerHandler(registrar));
+    (new MethodChannel(messenger, BluetoothHeadsetHandler.CHANNEL))
+      .setMethodCallHandler(new BluetoothHeadsetHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), BluetoothManagerHandler.CHANNEL))
-      .setMethodCallHandler(new BluetoothManagerHandler(registrar));
+    (new MethodChannel(messenger, BluetoothLeScannerHandler.CHANNEL))
+      .setMethodCallHandler(new BluetoothLeScannerHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), ContextHandler.CHANNEL))
-      .setMethodCallHandler(new ContextHandler(registrar));
+    (new MethodChannel(messenger, BluetoothManagerHandler.CHANNEL))
+      .setMethodCallHandler(new BluetoothManagerHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), EnvironmentHandler.CHANNEL))
-      .setMethodCallHandler(new EnvironmentHandler(registrar));
+    (new MethodChannel(messenger, ContextHandler.CHANNEL))
+      .setMethodCallHandler(new ContextHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), FaceDetectorHandler.CHANNEL))
-      .setMethodCallHandler(new FaceDetectorHandler(registrar));
+    (new MethodChannel(messenger, EnvironmentHandler.CHANNEL))
+      .setMethodCallHandler(new EnvironmentHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), LocationHandler.CHANNEL))
-      .setMethodCallHandler(new LocationHandler(registrar));
+    (new MethodChannel(messenger, FaceDetectorHandler.CHANNEL))
+      .setMethodCallHandler(new FaceDetectorHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), SensorManagerHandler.CHANNEL))
-      .setMethodCallHandler(new SensorManagerHandler(registrar));
+    (new MethodChannel(messenger, IntentHandler.CHANNEL))
+      .setMethodCallHandler(new IntentHandler(binding));
 
-    (new MethodChannel(registrar.messenger(), SharedPreferencesHandler.CHANNEL))
-      .setMethodCallHandler(new SharedPreferencesHandler(registrar));
+    (new MethodChannel(messenger, LocationHandler.CHANNEL))
+      .setMethodCallHandler(new LocationHandler(binding));
+
+    (new MethodChannel(messenger, SensorManagerHandler.CHANNEL))
+      .setMethodCallHandler(new SensorManagerHandler(binding));
+
+    (new MethodChannel(messenger, SharedPreferencesHandler.CHANNEL))
+      .setMethodCallHandler(new SharedPreferencesHandler(binding));
+  }
+
+  @Override
+  public void onDetachedFromEngine(final @NonNull FlutterPlugin.FlutterPluginBinding binding) {
+    assert(binding != null);
+
+    // TODO: channel.setMethodCallHandler(null);
   }
 }

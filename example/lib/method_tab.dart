@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart' show launch;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef Future<dynamic> MethodCallback();
+typedef MethodCallback = Future<dynamic> Function();
 
 final Map<String, MethodCallback> methods = <String, MethodCallback>{
   // TODO
@@ -40,7 +40,7 @@ class _MethodTabState extends State<MethodTab> {
       padding: EdgeInsets.all(8.0),
       itemCount: methodKeys.length,
       itemBuilder: (final BuildContext context, final int index) {
-        final String methodKey = methodKeys[index];
+        final methodKey = methodKeys[index];
         return GestureDetector(
           onTap: () => launch(_getURL(methodKey)),
           child: ListTile(
@@ -48,16 +48,18 @@ class _MethodTabState extends State<MethodTab> {
             title: Text(_getTitle(methodKey)),
             subtitle: FutureBuilder<dynamic>(
               future: _results[methodKey],
-              builder: (final BuildContext context, final AsyncSnapshot<dynamic> snapshot) {
+              builder: (final BuildContext context,
+                  final AsyncSnapshot<dynamic> snapshot) {
                 switch (snapshot.connectionState) {
+                  case ConnectionState.done:
+                    return snapshot.hasError
+                        ? Text(snapshot.error)
+                        : Text(snapshot.data.toString());
                   case ConnectionState.none:
                   case ConnectionState.active:
                   case ConnectionState.waiting:
+                  default:
                     return Text("Unknown");
-                  case ConnectionState.done:
-                    return snapshot.hasError ?
-                      Text(snapshot.error) :
-                      Text(snapshot.data.toString());
                 }
               },
             ),
@@ -81,20 +83,19 @@ class _MethodTabState extends State<MethodTab> {
     final libraryName = methodInfo[0];
     final className = methodInfo[1];
     final methodName = methodInfo[2];
-    return "https://pub.dartlang.org/documentation/flutter_android/latest/$libraryName/$className/$methodName.html";
+    return "https://pub.dev/documentation/flutter_android/latest/$libraryName/$className/$methodName.html";
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> _initPlatformState() async {
-    Map<String, Future<dynamic>> results = <String, Future<dynamic>>{};
+    final results = <String, Future<dynamic>>{};
 
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       methods.forEach((k, v) {
         results[k] = Future.value(""); //v();
       });
-    }
-    on PlatformException {
+    } on PlatformException {
       // TODO: improve error handling
     }
 
@@ -103,6 +104,8 @@ class _MethodTabState extends State<MethodTab> {
     // setState to update our non-existent appearance.
     if (!mounted) return;
 
-    setState(() { _results = results; });
+    setState(() {
+      _results = results;
+    });
   }
 }
