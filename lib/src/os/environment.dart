@@ -151,10 +151,10 @@ abstract class Environment {
   /// Returns the current state of the primary shared/external storage media.
   ///
   /// See: https://developer.android.com/reference/android/os/Environment#getExternalStorageState()
-  static Future<String> get externalStorageState async {
+  static Future<String?> get externalStorageState async {
     assert(Platform.isAndroid);
     return await _channel.invokeMethod('getExternalStorageState')
-        as String; // TODO: enum values
+        as String?; // TODO: enum values
   }
 
   /// Return root of the "system" partition holding the core Android OS. Always
@@ -169,17 +169,17 @@ abstract class Environment {
   /// Returns whether the primary shared/external storage media is emulated.
   ///
   /// See: https://developer.android.com/reference/android/os/Environment#isExternalStorageEmulated()
-  static Future<bool> get isExternalStorageEmulated async {
+  static Future<bool?> get isExternalStorageEmulated async {
     assert(Platform.isAndroid);
-    return await _channel.invokeMethod('isExternalStorageEmulated') as bool;
+    return await _channel.invokeMethod('isExternalStorageEmulated') as bool?;
   }
 
   /// Returns whether the primary shared/external storage media is physically
   /// removable.
   ///
   /// See: https://developer.android.com/reference/android/os/Environment#isExternalStorageRemovable()
-  static Future<bool> get isExternalStorageRemovable async {
+  static Future<bool?> get isExternalStorageRemovable async {
     assert(Platform.isAndroid);
-    return await _channel.invokeMethod('isExternalStorageRemovable') as bool;
+    return await _channel.invokeMethod('isExternalStorageRemovable') as bool?;
   }
 }

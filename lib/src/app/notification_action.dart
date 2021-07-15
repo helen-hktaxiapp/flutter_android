@@ -51,17 +51,17 @@ class NotificationAction {
   /// presentation by the system UI.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification.Action#actionIntent
-  final PendingIntent intent;
+  final PendingIntent? intent;
 
   /// Small icon representing the action.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification.Action#icon
-  final Icon icon;
+  final Icon? icon;
 
   /// Title of the action.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification.Action#title
-  final String title;
+  final String? title;
 
   NotificationAction({
     this.intent,

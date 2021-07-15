@@ -22,7 +22,7 @@ class StatFs {
   /// applications.
   ///
   /// See: https://developer.android.com/reference/android/os/StatFs#getAvailableBlocksLong()
-  int get availableBlocks {
+  int? get availableBlocks {
     return null; // TODO
   }
 
@@ -30,21 +30,21 @@ class StatFs {
   /// applications.
   ///
   /// See: https://developer.android.com/reference/android/os/StatFs#getAvailableBytes()
-  int get availableBytes {
+  int? get availableBytes {
     return null; // TODO
   }
 
   /// The total number of blocks on the file system.
   ///
   /// See: https://developer.android.com/reference/android/os/StatFs#getBlockCountLong()
-  int get blockCount {
+  int? get blockCount {
     return null; // TODO
   }
 
   /// The size, in bytes, of a block on the file system.
   ///
   /// See: https://developer.android.com/reference/android/os/StatFs#getBlockSizeLong()
-  int get blockSize {
+  int? get blockSize {
     return null; // TODO
   }
 
@@ -52,7 +52,7 @@ class StatFs {
   /// reserved blocks (that are not available to normal applications).
   ///
   /// See: https://developer.android.com/reference/android/os/StatFs#getFreeBlocksLong()
-  int get freeBlocks {
+  int? get freeBlocks {
     return null; // TODO
   }
 
@@ -60,14 +60,14 @@ class StatFs {
   /// blocks (that are not available to normal applications).
   ///
   /// See: https://developer.android.com/reference/android/os/StatFs#getFreeBytes()
-  int get freeBytes {
+  int? get freeBytes {
     return null; // TODO
   }
 
   /// The total number of bytes supported by the file system.
   ///
   /// See: https://developer.android.com/reference/android/os/StatFs#getTotalBytes()
-  int get totalBytes {
+  int? get totalBytes {
     return null; // TODO
   }
 }

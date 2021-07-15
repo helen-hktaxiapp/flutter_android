@@ -6,4 +6,6 @@ import 'package:flutter/services.dart' show PlatformException;
 /// fails because an `Activity` can not be found to execute the given [Intent].
 ///
 /// See: https://developer.android.com/reference/android/content/ActivityNotFoundException
-class ActivityNotFoundException extends PlatformException {}
+class ActivityNotFoundException extends PlatformException {
+  ActivityNotFoundException() : super(code: '');
+}

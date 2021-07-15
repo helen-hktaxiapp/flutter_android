@@ -7,21 +7,21 @@ abstract class SystemClock {
   /// Returns milliseconds running in the current thread.
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#currentThreadTimeMillis()
-  int get currentThreadTimeMillis {
+  int? get currentThreadTimeMillis {
     return null; // TODO
   }
 
   /// Returns milliseconds since boot, including time spent in sleep.
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime()
-  int get elapsedRealtime {
+  int? get elapsedRealtime {
     return null; // TODO
   }
 
   /// Returns nanoseconds since boot, including time spent in sleep.
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#elapsedRealtimeNanos()
-  int get elapsedRealtimeNanos {
+  int? get elapsedRealtimeNanos {
     return null; // TODO
   }
 
@@ -30,7 +30,7 @@ abstract class SystemClock {
   /// Requires the calling process to have appropriate permissions.
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#setCurrentTimeMillis(long)
-  set currentThreadTimeMillis(final int millis) {
+  set currentThreadTimeMillis(final int? millis) {
     return null; // TODO
   }
 
@@ -44,7 +44,7 @@ abstract class SystemClock {
   /// Returns milliseconds since boot, not counting time spent in deep sleep.
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#uptimeMillis()
-  int get uptimeMillis {
+  int? get uptimeMillis {
     return null; // TODO
   }
 }

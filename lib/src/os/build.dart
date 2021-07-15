@@ -16,7 +16,7 @@ abstract class Build {
   /// May return `null` (if, for instance, the radio is not currently on).
   ///
   /// See: https://developer.android.com/reference/android/os/Build#getRadioVersion()
-  static Future<String> get radioVersion {
+  static Future<String>? get radioVersion {
     assert(Platform.isAndroid);
     return null; // TODO
   }
@@ -24,7 +24,7 @@ abstract class Build {
   /// Gets the hardware serial number, if available.
   ///
   /// See: https://developer.android.com/reference/android/os/Build#getSerial()
-  static Future<String> get serial {
+  static Future<String>? get serial {
     assert(Platform.isAndroid);
     return null; // TODO
   }

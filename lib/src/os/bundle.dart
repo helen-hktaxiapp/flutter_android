@@ -63,7 +63,7 @@ class Bundle with Parcelable {
   /// Returns the entry with the given key.
   ///
   /// See: https://developer.android.com/reference/android/os/BaseBundle#getString(java.lang.String)
-  String getString(final String key) => get(key);
+  String? getString(final String key) => get(key);
 
   /// Inserts a string value into the mapping of this [Bundle], replacing any
   /// existing value for the given key.

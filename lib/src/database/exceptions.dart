@@ -10,11 +10,13 @@ class CursorIndexOutOfBoundsException extends PlatformException {
 
   final int size;
 
-  CursorIndexOutOfBoundsException(this.index, this.size);
+  CursorIndexOutOfBoundsException(this.index, this.size) : super(code: '');
 }
 
 /// An exception that indicates there was an error with SQL parsing or
 /// execution.
 ///
 /// See: https://developer.android.com/reference/android/database/SQLException
-class SQLException extends PlatformException {}
+class SQLException extends PlatformException {
+  SQLException() : super(code: '');
+}

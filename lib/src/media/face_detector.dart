@@ -32,7 +32,7 @@ class FaceDetector {
   /// Note that the width of the image must be even.
   ///
   /// See: https://developer.android.com/reference/android/media/FaceDetector#FaceDetector(int,%20int,%20int)
-  FaceDetector({@required this.width, @required this.height, this.maxFaces = 1})
+  FaceDetector({required this.width, required this.height, this.maxFaces = 1})
       : assert(width != null && width > 0 && width % 2 == 0),
         assert(height != null && height > 0);
 
@@ -41,7 +41,7 @@ class FaceDetector {
   /// Returns an array of [Face] for each face found.
   ///
   /// See: https://developer.android.com/reference/android/media/FaceDetector#findFaces(android.graphics.Bitmap,%20android.media.FaceDetector.Face[])
-  Future<List<Face>> findFaces(final Bitmap bitmap) async {
+  Future<List<Face>?> findFaces(final Bitmap bitmap) async {
     assert(Platform.isAndroid);
     final request = <String, dynamic>{
       'width': width,

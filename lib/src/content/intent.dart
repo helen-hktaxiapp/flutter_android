@@ -24,30 +24,30 @@ class Intent with Parcelable {
   static const MethodChannel _channel = MethodChannel('flutter_android/Intent');
 
   /// The general action to be performed.
-  final String action;
+  final String? action;
 
   /// The data to operate on, such as a person record in the contacts database.
-  final Uri data;
+  final Uri? data;
 
   /// Gives additional information about the action to execute.
-  final List<String> categories;
+  final List<String>? categories;
 
   /// Specifies an explicit type (a MIME type) of the intent data.
-  final String type;
+  final String? type;
 
   /// Specifies an explicit name of a component class to use for the intent.
-  final ComponentName component;
+  final ComponentName? component;
 
   /// This is a [Bundle] of any additional information.
-  final Bundle extras;
+  final Bundle? extras;
 
   /// Flags used on this [Intent].
   ///
   /// See: https://developer.android.com/reference/android/content/Intent#flags
-  final int flags;
+  final int? flags;
 
   /// Specifies the application package name this intent is limited to.
-  final String package;
+  final String? package;
 
   Intent({
     this.action,
@@ -63,12 +63,12 @@ class Intent with Parcelable {
   /// Gives additional information about the action to execute.
   ///
   /// If this intent has multiple categories, returns the first of them.
-  String get category => categories.isNotEmpty ? categories.first : null;
+  String? get category => categories!.isNotEmpty ? categories!.first : null;
 
   /// Launches a new activity.
   ///
   /// See: https://developer.android.com/reference/android/content/Context#startActivity(android.content.Intent)
-  Future<bool> startActivity() async {
+  Future<bool?> startActivity() async {
     assert(Platform.isAndroid);
     final request = <String, dynamic>{
       'action': action,
@@ -80,7 +80,7 @@ class Intent with Parcelable {
       'flags': flags,
       'package': package,
     };
-    return await _channel.invokeMethod('startActivity', request) as bool;
+    return await _channel.invokeMethod('startActivity', request) as bool?;
   }
 
   @override

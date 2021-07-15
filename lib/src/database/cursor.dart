@@ -13,7 +13,7 @@ import '../os/bundle.dart' show Bundle;
 /// using the [Cursor].
 ///
 /// See: https://developer.android.com/reference/android/database/Cursor
-abstract class Cursor extends Iterable<Map<String, dynamic>> {
+abstract class Cursor extends Iterable<Map<String, dynamic>?> {
   /// Value returned by [getType()] if the specified column type is blob.
   ///
   /// See: https://developer.android.com/reference/android/database/Cursor#FIELD_TYPE_BLOB
@@ -70,7 +70,7 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// delivered.
   ///
   /// This is simply a Dart-idiomatic getter alias for [getNotificationUri()].
-  Uri get notificationUri => getNotificationUri();
+  Uri? get notificationUri => getNotificationUri();
 
   /// The current position of the cursor in the row set.
   ///
@@ -148,7 +148,7 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// will be delivered.
   ///
   /// See: https://developer.android.com/reference/android/database/Cursor#getNotificationUri()
-  Uri getNotificationUri() => null;
+  Uri? getNotificationUri() => null;
 
   /// Returns the current position of the cursor in the row set.
   ///
@@ -173,7 +173,7 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// Returns data type of the given column's value.
   ///
   /// See: https://developer.android.com/reference/android/database/Cursor#getType(int)
-  int getType(final int columnIndex) {
+  int? getType(final int columnIndex) {
     final dynamic value = get(columnIndex);
     if (value == null) return FIELD_TYPE_NULL;
     if (value is int) return FIELD_TYPE_INTEGER;
@@ -262,15 +262,15 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// Note that this implementation does not support concurrent iterators,
   /// since the returned iterator mutates the cursor state.
   @override
-  Iterator<Map<String, dynamic>> get iterator {
+  Iterator<Map<String, dynamic>?> get iterator {
     return _CursorIterator(this);
   }
 }
 
-class _CursorIterator extends Iterator<Map<String, dynamic>> {
+class _CursorIterator extends Iterator<Map<String, dynamic>?> {
   final Cursor cursor;
   final List<String> _columnNames;
-  Map<String, dynamic> _currentRow;
+  Map<String, dynamic>? _currentRow;
 
   _CursorIterator(this.cursor) : _columnNames = cursor.getColumnNames();
 
@@ -285,11 +285,11 @@ class _CursorIterator extends Iterator<Map<String, dynamic>> {
     for (var columnIndex = 0;
         columnIndex < _columnNames.length;
         columnIndex++) {
-      _currentRow[_columnNames[columnIndex]] = cursor.get(columnIndex);
+      _currentRow![_columnNames[columnIndex]] = cursor.get(columnIndex);
     }
     return true;
   }
 
   @override
-  Map<String, dynamic> get current => _currentRow;
+  Map<String, dynamic>? get current => _currentRow;
 }

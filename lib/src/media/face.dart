@@ -33,26 +33,26 @@ class Face {
   /// A confidence factor above 0.3 is usually good enough.
   ///
   /// See: https://developer.android.com/reference/android/media/FaceDetector.Face#confidence()
-  final double confidence;
+  final double? confidence;
 
   /// The distance between the eyes.
   ///
   /// See: https://developer.android.com/reference/android/media/FaceDetector.Face#eyesDistance()
-  final double eyesDistance;
+  final double? eyesDistance;
 
   /// The position of the mid-point between the eyes.
   ///
   /// See: https://developer.android.com/reference/android/media/FaceDetector.Face#getMidPoint(android.graphics.PointF)
-  final PointF midPoint;
+  final PointF? midPoint;
 
   /// The Euler angle of the face, around the X axis.
-  final double poseX;
+  final double? poseX;
 
   /// The Euler angle of the face, around the Y axis.
-  final double poseY;
+  final double? poseY;
 
   /// The Euler angle of the face, around the Z axis.
-  final double poseZ;
+  final double? poseZ;
 
   Face({
     this.confidence,
@@ -67,7 +67,7 @@ class Face {
   /// Z axis (the positions in 3-dimensional Euclidean space).
   ///
   /// See: https://developer.android.com/reference/android/media/FaceDetector.Face#pose(int)
-  double pose(final int euler) {
+  double? pose(final int euler) {
     switch (euler) {
       case EULER_X:
         return poseX;

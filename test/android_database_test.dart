@@ -41,9 +41,9 @@ void main() {
       expect(cursor.isBeforeFirst, isTrue);
       for (var row in cursor) {
         expect(row, hasLength(3));
-        expect(row.keys, contains('a'));
-        expect(row.keys, contains('b'));
-        expect(row.keys, contains('c'));
+        expect(row!.keys, contains('a'));
+        expect(row!.keys, contains('b'));
+        expect(row!.keys, contains('c'));
       }
       expect(cursor.position, equals(3));
       expect(cursor.isAfterLast, isTrue);

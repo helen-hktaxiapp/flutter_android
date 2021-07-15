@@ -46,32 +46,32 @@ class Location with Parcelable {
   /// The estimated horizontal accuracy of this location, radial, in meters.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getAccuracy()
-  final double accuracy;
+  final double? accuracy;
 
   /// The altitude if available, in meters above the WGS 84 reference ellipsoid
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getAltitude()
-  final double altitude;
+  final double? altitude;
 
   /// The bearing, in degrees.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getBearing()
-  final double bearing;
+  final double? bearing;
 
   /// The estimated bearing accuracy of this location, in degrees.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getBearingAccuracyDegrees()
-  final double bearingAccuracyDegrees;
+  final double? bearingAccuracyDegrees;
 
   /// The time of this fix, in elapsed real-time since system boot.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getElapsedRealtimeNanos()
-  final int elapsedRealtimeNanos;
+  final int? elapsedRealtimeNanos;
 
   /// Any additional provider-specific information about the location fix.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getExtras()
-  final Bundle extras;
+  final Bundle? extras;
 
   /// The latitude, in degrees.
   ///
@@ -86,27 +86,27 @@ class Location with Parcelable {
   /// The name of the provider that generated this fix.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getProvider()
-  final String provider;
+  final String? provider;
 
   /// The speed if it is available, in meters/second over ground.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getSpeed()
-  final double speed;
+  final double? speed;
 
   /// The estimated speed accuracy of this location, in meters per second.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getSpeedAccuracyMetersPerSecond()
-  final double speedAccuracyMetersPerSecond;
+  final double? speedAccuracyMetersPerSecond;
 
   /// The UTC time of this fix, in milliseconds since January 1, 1970.
   ///
   /// https://developer.android.com/reference/android/location/Location#getTime()
-  final int time;
+  final int? time;
 
   /// The estimated vertical accuracy of this location, in meters.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#getVerticalAccuracyMeters()
-  final double verticalAccuracyMeters;
+  final double? verticalAccuracyMeters;
 
   Location(
     // FIXME: https://github.com/dart-lang/sdk/issues/40982
@@ -128,7 +128,7 @@ class Location with Parcelable {
   /// Computes the approximate distance in meters between two locations.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#distanceBetween(double,%20double,%20double,%20double,%20float[])
-  static Future<double> distanceBetween(double startLatitude,
+  static Future<double?> distanceBetween(double startLatitude,
       double startLongitude, double endLatitude, double endLongitude) async {
     assert(Platform.isAndroid);
     final request = <String, dynamic>{
@@ -184,7 +184,7 @@ class Location with Parcelable {
   /// given location.
   ///
   /// See: https://developer.android.com/reference/android/location/Location#distanceTo(android.location.Location)
-  Future<double> distanceTo(final Location dest) {
+  Future<double?> distanceTo(final Location dest) {
     return distanceBetween(latitude, longitude, dest.latitude, dest.longitude);
   }
 

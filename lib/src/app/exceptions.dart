@@ -16,6 +16,8 @@ import '../os/parcelable.dart' show Parcelable;
 /// See: https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/app/AuthenticationRequiredException.java
 class AuthenticationRequiredException extends PlatformException
     with Parcelable {
+  AuthenticationRequiredException() : super(code:'');
+
   @override
   String get parcelableCreator => "android.app.AuthenticationRequiredException";
 

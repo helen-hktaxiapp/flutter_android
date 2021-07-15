@@ -353,9 +353,9 @@ abstract class Context {
   /// Return the name of this application's package.
   ///
   /// See: https://developer.android.com/reference/android/content/Context#getPackageName()
-  static Future<String> get packageName async {
+  static Future<String?> get packageName async {
     assert(Platform.isAndroid);
-    return await _channel.invokeMethod('getPackageName') as String;
+    return await _channel.invokeMethod('getPackageName') as String?;
   }
 
   /// Return the full path to this context's primary Android package. The

@@ -10,23 +10,23 @@ class SensorEvent {
   /// The accuracy of this event.
   ///
   /// See: https://developer.android.com/reference/android/hardware/SensorEvent#accuracy
-  final int accuracy;
+  final int? accuracy;
 
   /// The sensor that generated this event.
   ///
   /// See: https://developer.android.com/reference/android/hardware/SensorEvent#sensor
-  final Sensor sensor;
+  final Sensor? sensor;
 
   /// The time in nanoseconds at which the event happened.
   ///
   /// See: https://developer.android.com/reference/android/hardware/SensorEvent#timestamp
-  final int timestamp;
+  final int? timestamp;
 
   /// The length and contents of the values array depends on which sensor type
   /// is being monitored.
   ///
   /// See: https://developer.android.com/reference/android/hardware/SensorEvent#values
-  final List<double> values;
+  final List<double>? values;
 
   const SensorEvent({
     this.accuracy,

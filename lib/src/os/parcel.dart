@@ -57,7 +57,7 @@ class Parcel {
 
   final Uint8Buffer _output = Uint8Buffer();
   final ByteData _buffer = ByteData(8);
-  Uint8List _bufferAsList;
+  late Uint8List _bufferAsList;
 
   Parcel.obtain() {
     _bufferAsList = _buffer.buffer.asUint8List();
@@ -115,7 +115,7 @@ class Parcel {
       writeStringArray(val);
     } else if (val is List) {
       writeInt(VAL_LIST);
-      writeList(val);
+      writeList(val as List<Object>);
     } else {
       throw ArgumentError("Parcel: unable to marshal value $val");
     }
@@ -149,7 +149,7 @@ class Parcel {
     _write(_bufferAsList, 0, 8);
   }
 
-  void writeString(final String val) {
+  void writeString(final String? val) {
     if (val == null) {
       return writeInt(-1);
     }
@@ -269,7 +269,7 @@ class Parcel {
     parcelable.writeToParcel(this, parcelableFlags);
   }
 
-  void _write(final Uint8List data, [int start = 0, int end]) {
+  void _write(final Uint8List data, [int start = 0, int? end]) {
     _output.addAll(data, start, end);
     if (_output.lengthInBytes % 4 != 0) {
       _writePadding(4 - _output.lengthInBytes % 4);

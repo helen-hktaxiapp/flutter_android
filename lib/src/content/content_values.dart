@@ -22,6 +22,6 @@ class ContentValues with Parcelable {
   @override
   void writeToParcel(final Parcel parcel, [final int flags = 0]) {
     parcel.writeInt(map.length);
-    parcel.writeArrayMap(map);
+    parcel.writeArrayMap(map as Map<String, Object>);
   }
 }

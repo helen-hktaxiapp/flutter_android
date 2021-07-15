@@ -17,10 +17,10 @@ class DownloadManager {
   /// connection; or `null` if there's no limit.
   ///
   /// See: https://developer.android.com/reference/android/app/DownloadManager#getMaxBytesOverMobile(android.content.Context)
-  static Future<int> get maxBytesOverMobile async {
+  static Future<int?> get maxBytesOverMobile async {
     assert(Platform.isAndroid);
     return await _channel.invokeMethod('getMaxBytesOverMobile')
-        as int; // TODO: implement backend
+        as int?; // TODO: implement backend
   }
 
   /// Returns recommended maximum size, in bytes, of downloads that may go over
@@ -28,9 +28,9 @@ class DownloadManager {
   /// will have the option to bypass this limit.
   ///
   /// See: https://developer.android.com/reference/android/app/DownloadManager#getRecommendedMaxBytesOverMobile(android.content.Context)
-  static Future<int> get recommendedMaxBytesOverMobile async {
+  static Future<int?> get recommendedMaxBytesOverMobile async {
     assert(Platform.isAndroid);
     return await _channel.invokeMethod('getRecommendedMaxBytesOverMobile')
-        as int; // TODO: implement backend
+        as int?; // TODO: implement backend
   }
 }

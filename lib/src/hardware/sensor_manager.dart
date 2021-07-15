@@ -220,7 +220,7 @@ abstract class SensorManager {
   /// Gets the default sensor for a given type.
   ///
   /// See: https://developer.android.com/reference/android/hardware/SensorManager#getDefaultSensor(int)
-  static Future<Sensor> getDefaultSensor(final int type) async {
+  static Future<Sensor?> getDefaultSensor(final int type) async {
     assert(Platform.isAndroid);
     final request = <String, dynamic>{'type': type};
     final key = await _channel.invokeMethod('getDefaultSensor', request);
@@ -237,8 +237,8 @@ abstract class SensorManager {
   /// sampling frequency and the given maximum reporting latency.
   ///
   /// See: https://developer.android.com/reference/android/hardware/SensorManager#registerListener(android.hardware.SensorEventListener,%20android.hardware.Sensor,%20int,%20int)
-  static Future<EventChannel> registerListener(final Sensor sensor,
-      {int samplingPeriodUs, int maxReportLatencyUs}) async {
+  static Future<EventChannel?> registerListener(final Sensor sensor,
+      {int? samplingPeriodUs, int? maxReportLatencyUs}) async {
     assert(Platform.isAndroid);
     assert(sensor.key != null);
     final request = <String, dynamic>{

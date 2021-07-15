@@ -94,14 +94,14 @@ abstract class Process {
   /// Returns whether the current process is a 64-bit runtime.
   ///
   /// See: https://developer.android.com/reference/android/os/Process#is64Bit()
-  static Future<bool> get is64Bit {
+  static Future<bool>? get is64Bit {
     return null; // TODO
   }
 
   /// Returns whether the current process is in an isolated sandbox.
   ///
   /// See: https://developer.android.com/reference/android/os/Process#isIsolated()
-  static Future<bool> get isIsolated {
+  static Future<bool>? get isIsolated {
     return null; // TODO
   }
 }

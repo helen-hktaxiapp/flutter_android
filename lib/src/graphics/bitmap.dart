@@ -20,22 +20,22 @@ abstract class Bitmap with Parcelable {
     return _AssetBitmap(asset);
   }
 
-  String get assetName => null;
+  String? get assetName => null;
 
   /// The bitmap's height.
-  int get height;
+  int? get height;
 
   /// The bitmap's width.
-  int get width;
+  int? get width;
 
   /// Returns the bitmap's height.
-  int getHeight() => height;
+  int? getHeight() => height;
 
   /// Returns the bitmap's width.
-  int getWidth() => width;
+  int? getWidth() => width;
 
   /// Creates an image from this bitmap.
-  Image toImage();
+  Image? toImage();
 
   @override
   String get parcelableCreator => "android.graphics.Bitmap";
@@ -70,11 +70,11 @@ class _AssetBitmap extends Bitmap {
   String get assetName => asset.assetName;
 
   @override
-  int get height => null; // TODO
+  int? get height => null; // TODO
 
   @override
-  int get width => null; // TODO
+  int? get width => null; // TODO
 
   @override
-  Image toImage() => null; // TODO
+  Image? toImage() => null; // TODO
 }
